@@ -1,0 +1,561 @@
+Go:      go version go1.25.1 linux/amd64
+Kind:    kind version 0.29.0
+Docker:  28.4.0
+kubectl: Client Version: v1.29.15
+Kustomize Version: v5.0.4-0.20230601165947-6ce0bf390ce3
+
+>>> Building quick-release artifacts...
++++ [1006 09:57:13] Building go targets for linux/amd64
+    github.com/onsi/ginkgo/v2/ginkgo (non-static)
+    k8s.io/apiextensions-apiserver (static)
+    k8s.io/component-base/logs/kube-log-runner (static)
+    k8s.io/kube-aggregator (static)
+    k8s.io/kubernetes/cluster/gce/gci/mounter (static)
+    k8s.io/kubernetes/cmd/kubeadm (static)
+    k8s.io/kubernetes/cmd/kube-apiserver (static)
+    k8s.io/kubernetes/cmd/kube-controller-manager (static)
+    k8s.io/kubernetes/cmd/kubectl (static)
+    k8s.io/kubernetes/cmd/kubectl-convert (static)
+    k8s.io/kubernetes/cmd/kubelet (non-static)
+    k8s.io/kubernetes/cmd/kubemark (static)
+    k8s.io/kubernetes/cmd/kube-proxy (static)
+    k8s.io/kubernetes/cmd/kube-scheduler (static)
+    k8s.io/kubernetes/test/conformance/image/go-runner (non-static)
+    k8s.io/kubernetes/test/e2e/e2e.test (test)
+    k8s.io/kubernetes/test/e2e_node/e2e_node.test (test)
+>>> Local test binaries live in /home/jlyon/Documents/Projects/k8s/kubernetes/_output/bin
+
+>>> Deleting existing kind cluster (if any)…
+No kind clusters found.
+
+>>> Creating kind cluster…
+Creating cluster "test-cluster" ...
+ • Ensuring node image (kindest/node:v1.33.1) 🖼  ...
+ ✓ Ensuring node image (kindest/node:v1.33.1) 🖼
+ • Preparing nodes 📦 📦   ...
+ ✓ Preparing nodes 📦 📦 
+ • Writing configuration 📜  ...
+ ✓ Writing configuration 📜
+ • Starting control-plane 🕹️  ...
+ ✓ Starting control-plane 🕹️
+ • Installing StorageClass 💾  ...
+ ✓ Installing StorageClass 💾
+ • Joining worker nodes 🚜  ...
+ ✓ Joining worker nodes 🚜
+Set kubectl context to "kind-test-cluster"
+You can now use your cluster with:
+
+kubectl cluster-info --context kind-test-cluster --kubeconfig /home/jlyon/Documents/Projects/k8s/kubernetes/kind.kubeconfig
+
+Have a question, bug, or feature request? Let us know! https://kind.sigs.k8s.io/#community 🙂
+
+>>> Installing Calico…
+poddisruptionbudget.policy/calico-kube-controllers created
+serviceaccount/calico-kube-controllers created
+serviceaccount/calico-node created
+configmap/calico-config created
+customresourcedefinition.apiextensions.k8s.io/bgpconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/bgppeers.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/blockaffinities.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/caliconodestatuses.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/clusterinformations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/felixconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/globalnetworksets.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/hostendpoints.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamblocks.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamconfigs.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipamhandles.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ippools.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/ipreservations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/kubecontrollersconfigurations.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networkpolicies.crd.projectcalico.org created
+customresourcedefinition.apiextensions.k8s.io/networksets.crd.projectcalico.org created
+clusterrole.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrole.rbac.authorization.k8s.io/calico-node created
+clusterrolebinding.rbac.authorization.k8s.io/calico-kube-controllers created
+clusterrolebinding.rbac.authorization.k8s.io/calico-node created
+daemonset.apps/calico-node created
+deployment.apps/calico-kube-controllers created
+Waiting for daemon set "calico-node" rollout to finish: 0 of 2 updated pods are available...
+Waiting for daemon set "calico-node" rollout to finish: 1 of 2 updated pods are available...
+daemon set "calico-node" successfully rolled out
+Waiting for deployment "calico-kube-controllers" rollout to finish: 0 of 1 updated replicas are available...
+deployment "calico-kube-controllers" successfully rolled out
+
+>>> Installing MetalLB…
+namespace/metallb-system created
+customresourcedefinition.apiextensions.k8s.io/bfdprofiles.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/bgpadvertisements.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/bgppeers.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/communities.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/ipaddresspools.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/l2advertisements.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/servicebgpstatuses.metallb.io created
+customresourcedefinition.apiextensions.k8s.io/servicel2statuses.metallb.io created
+serviceaccount/controller created
+serviceaccount/speaker created
+role.rbac.authorization.k8s.io/controller created
+role.rbac.authorization.k8s.io/pod-lister created
+clusterrole.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrole.rbac.authorization.k8s.io/metallb-system:speaker created
+rolebinding.rbac.authorization.k8s.io/controller created
+rolebinding.rbac.authorization.k8s.io/pod-lister created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:controller created
+clusterrolebinding.rbac.authorization.k8s.io/metallb-system:speaker created
+configmap/metallb-excludel2 created
+secret/metallb-webhook-cert created
+service/metallb-webhook-service created
+deployment.apps/controller created
+daemonset.apps/speaker created
+validatingwebhookconfiguration.admissionregistration.k8s.io/metallb-webhook-configuration created
+Waiting for deployment "controller" rollout to finish: 0 of 1 updated replicas are available...
+deployment "controller" successfully rolled out
+Waiting for daemon set "speaker" rollout to finish: 0 of 2 updated pods are available...
+Waiting for daemon set "speaker" rollout to finish: 1 of 2 updated pods are available...
+daemon set "speaker" successfully rolled out
+ipaddresspool.metallb.io/kind-pool created
+l2advertisement.metallb.io/kind-l2 created
+  • MetalLB pool: 172.18.255.1-172.18.255.250
+  • LoadBalancer VIP will be: 172.18.255.1
+
+>>> Running LB+NetworkPolicy e2e test with kubetest2-kind…
+I1006 10:00:55.529800 2005452 app.go:61] The files in RunDir shall not be part of Artifacts
+I1006 10:00:55.529809 2005452 app.go:62] pass rundir-in-artifacts flag True for RunDir to be part of Artifacts
+I1006 10:00:55.529826 2005452 app.go:64] RunDir for this run: "/home/jlyon/Documents/Projects/k8s/kubernetes/_rundir/809922d4-99d5-4870-8dee-db8a40923ced"
+I1006 10:00:55.533250 2005452 app.go:136] ID for this run: "809922d4-99d5-4870-8dee-db8a40923ced"
+I1006 10:00:55.584902 2005482 ginkgo.go:131] Using kubeconfig at /home/jlyon/.kube/config
+I1006 10:00:55.584998 2005482 ginkgo.go:100] Running ginkgo test as /home/jlyon/Documents/Projects/k8s/kubernetes/_output/bin/ginkgo [--v --nodes=1 /home/jlyon/Documents/Projects/k8s/kubernetes/_output/bin/e2e.test -- --kubeconfig=/home/jlyon/.kube/config --kubectl-path=/home/jlyon/Documents/Projects/k8s/kubernetes/_output/bin/kubectl --ginkgo.skip=\[Serial\] --ginkgo.focus=should enforce default-deny ingress policy against LoadBalancer traffic with ExternalTrafficPolicy: --report-dir=/home/jlyon/Documents/Projects/k8s/kubernetes/_artifacts --ginkgo.timeout=24h0m0s --kubeconfig=/home/jlyon/Documents/Projects/k8s/kubernetes/kind.kubeconfig]
+  I1006 10:00:56.207539 2005528 test_context.go:565] The --provider flag is not set. Continuing as if --provider=skeleton had been used.
+  I1006 10:00:56.207697 2005528 e2e.go:109] Starting e2e run "02b396d4-5ba1-4897-9198-816c4f9bdcc7" on Ginkgo node 1
+Running Suite: Kubernetes e2e suite - /home/jlyon/Documents/Projects/k8s/kubernetes/_output/bin
+===============================================================================================
+Random Seed: 1759770055 - will randomize all specs
+
+Will run 1 of 7152 specs
+------------------------------
+[ReportBeforeSuite] 
+k8s.io/kubernetes/test/e2e/e2e_test.go:153
+[ReportBeforeSuite] PASSED [0.000 seconds]
+------------------------------
+[SynchronizedBeforeSuite] 
+k8s.io/kubernetes/test/e2e/e2e.go:69
+  I1006 10:00:56.381643 2005528 util.go:414] >>> kubeConfig: /home/jlyon/Documents/Projects/k8s/kubernetes/kind.kubeconfig
+  I1006 10:00:56.383986 2005528 helper.go:51] Waiting up to 30m0s for all (but 0) nodes to be schedulable
+  I1006 10:00:56.399503 2005528 e2e.go:142] Waiting up to 5m0s for all daemonsets in namespace 'kube-system' to start
+  I1006 10:00:56.401398 2005528 e2e.go:153] 2 / 2 pods ready in namespace 'kube-system' in daemonset 'calico-node' (0 seconds elapsed)
+  I1006 10:00:56.401439 2005528 e2e.go:153] 2 / 2 pods ready in namespace 'kube-system' in daemonset 'kube-proxy' (0 seconds elapsed)
+  I1006 10:00:56.401455 2005528 e2e.go:245] e2e test version: v1.35.0-alpha.0.970+d34a34e4058372-dirty
+  I1006 10:00:56.402155 2005528 e2e.go:254] kube-apiserver version: v1.33.1
+  I1006 10:00:56.402224 2005528 util.go:414] >>> kubeConfig: /home/jlyon/Documents/Projects/k8s/kubernetes/kind.kubeconfig
+  I1006 10:00:56.404204 2005528 e2e.go:383] Cluster IP family: ipv4
+[SynchronizedBeforeSuite] PASSED [0.023 seconds]
+------------------------------
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+------------------------------
+[sig-network] Netpol NetworkPolicy between server and client should enforce default-deny ingress policy against LoadBalancer traffic with ExternalTrafficPolicy: Local [Feature:NetworkPolicy] [Feature:LoadBalancer] [sig-network, Feature:NetworkPolicy, Feature:LoadBalancer]
+k8s.io/kubernetes/test/e2e/network/network_policy.go:1238
+  STEP: Creating a kubernetes client @ 10/06/25 10:00:56.569
+  I1006 10:00:56.569160 2005528 util.go:414] >>> kubeConfig: /home/jlyon/Documents/Projects/k8s/kubernetes/kind.kubeconfig
+  I1006 10:00:56.569936 2005528 network_policy.go:1552] dns domain: cluster.local
+  I1006 10:00:56.569957 2005528 network_policy.go:1560] initializing cluster: ensuring namespaces, pods and services exist and are ready
+  I1006 10:00:56.583563 2005528 kubemanager.go:92] creating pod netpol-x-156/a with matching service
+  I1006 10:00:56.583622 2005528 kubemanager.go:269] creating pod netpol-x-156/a
+  I1006 10:00:56.622993 2005528 kubemanager.go:92] creating pod netpol-x-156/b with matching service
+  I1006 10:00:56.623046 2005528 kubemanager.go:269] creating pod netpol-x-156/b
+  I1006 10:00:56.655435 2005528 kubemanager.go:92] creating pod netpol-x-156/c with matching service
+  I1006 10:00:56.655475 2005528 kubemanager.go:269] creating pod netpol-x-156/c
+  I1006 10:00:56.701311 2005528 kubemanager.go:92] creating pod netpol-y-1151/a with matching service
+  I1006 10:00:56.701355 2005528 kubemanager.go:269] creating pod netpol-y-1151/a
+  I1006 10:00:56.740306 2005528 kubemanager.go:92] creating pod netpol-y-1151/b with matching service
+  I1006 10:00:56.740362 2005528 kubemanager.go:269] creating pod netpol-y-1151/b
+  I1006 10:00:56.771729 2005528 kubemanager.go:92] creating pod netpol-y-1151/c with matching service
+  I1006 10:00:56.771762 2005528 kubemanager.go:269] creating pod netpol-y-1151/c
+  I1006 10:00:56.829083 2005528 kubemanager.go:92] creating pod netpol-z-2632/a with matching service
+  I1006 10:00:56.829127 2005528 kubemanager.go:269] creating pod netpol-z-2632/a
+  I1006 10:00:56.861312 2005528 kubemanager.go:92] creating pod netpol-z-2632/b with matching service
+  I1006 10:00:56.861709 2005528 kubemanager.go:269] creating pod netpol-z-2632/b
+  I1006 10:00:56.901794 2005528 kubemanager.go:92] creating pod netpol-z-2632/c with matching service
+  I1006 10:00:56.901826 2005528 kubemanager.go:269] creating pod netpol-z-2632/c
+  I1006 10:01:14.998016 2005528 network_policy.go:1566] finished initializing cluster state
+  I1006 10:01:14.998053 2005528 test_helper.go:72] waiting for HTTP servers (ports 80 and/or 81) to become ready
+  I1006 10:01:14.998209 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.205.27
+  I1006 10:01:14.998215 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.78.18
+  I1006 10:01:14.998253 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.236.34
+  I1006 10:01:14.998263 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:14.998276 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:14.998280 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:14.998283 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:14.998288 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:14.998291 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:14.998333 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:14.998333 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:14.998333 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.055817 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.122.67
+  I1006 10:01:15.055861 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.055878 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.055931 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.059067 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.165.14
+  I1006 10:01:15.059076 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.247.53
+  I1006 10:01:15.059097 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.059110 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.059095 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.059127 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.059166 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.059165 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.111229 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.29.202
+  I1006 10:01:15.111266 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.111283 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.111340 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.111392 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.36.101
+  I1006 10:01:15.111410 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.42.143
+  I1006 10:01:15.111419 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.111429 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.111435 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.111447 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.111464 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.111484 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.163872 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.205.27
+  I1006 10:01:15.163916 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.163934 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.164013 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.169236 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.78.18
+  I1006 10:01:15.169257 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.236.34
+  I1006 10:01:15.169276 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.169280 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.169291 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.169296 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.169339 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.169339 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.231077 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.122.67
+  I1006 10:01:15.231093 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.165.14
+  I1006 10:01:15.231097 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.247.53
+  I1006 10:01:15.231107 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.231117 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.231120 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.231131 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.231185 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.231135 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.231256 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.231122 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.231359 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.285857 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.29.202
+  I1006 10:01:15.285885 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.285901 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.285963 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.286796 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.36.101
+  I1006 10:01:15.286822 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.286836 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.286880 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.287062 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.42.143
+  I1006 10:01:15.287087 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.287099 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.287139 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.335496 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.205.27
+  I1006 10:01:15.335534 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.335549 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.335651 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.340367 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.78.18
+  I1006 10:01:15.340404 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.340419 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.340473 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.340778 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.236.34
+  I1006 10:01:15.340805 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.340820 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.340866 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.394105 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.122.67
+  I1006 10:01:15.394147 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.394165 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.394177 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.165.14
+  I1006 10:01:15.394206 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.394230 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.394233 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.394270 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.396650 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.247.53
+  I1006 10:01:15.396705 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.396723 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.396774 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.449065 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.29.202
+  I1006 10:01:15.449103 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.449131 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.449193 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.453957 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.36.101
+  I1006 10:01:15.453968 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.42.143
+  I1006 10:01:15.453994 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.454009 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.453993 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-x-156 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.454028 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.454063 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.454072 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-x-156/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.508888 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.205.27
+  I1006 10:01:15.508919 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.508934 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.508959 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.78.18
+  I1006 10:01:15.508987 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.508987 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.509073 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.509125 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.509491 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.236.34
+  I1006 10:01:15.509520 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.509533 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.509585 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.562333 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.122.67
+  I1006 10:01:15.562371 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.562386 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.562441 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.563911 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.165.14
+  I1006 10:01:15.563956 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.563972 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.564044 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.564339 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.247.53
+  I1006 10:01:15.564365 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.564381 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.564430 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.624736 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.29.202
+  I1006 10:01:15.624770 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.624785 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.624811 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.36.101
+  I1006 10:01:15.624838 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.624848 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.624855 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.625007 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.624812 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.42.143
+  I1006 10:01:15.625053 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.625068 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.625108 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.700046 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.205.27
+  I1006 10:01:15.700078 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.700093 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.700148 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.700314 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.78.18
+  I1006 10:01:15.700343 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.700359 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.700400 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.700451 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.236.34
+  I1006 10:01:15.700479 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.700493 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.700546 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.770021 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.122.67
+  I1006 10:01:15.770055 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.770068 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.770122 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.770885 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.247.53
+  I1006 10:01:15.770908 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.770921 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.770885 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.165.14
+  I1006 10:01:15.770968 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.770979 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.770992 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.771032 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.830151 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.29.202
+  I1006 10:01:15.830190 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.830207 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.830274 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.831217 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.42.143
+  I1006 10:01:15.831245 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.831259 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.831216 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.36.101
+  I1006 10:01:15.831310 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.831322 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.831350 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.831395 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.890253 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.205.27
+  I1006 10:01:15.890285 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.890300 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.890367 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.895262 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.78.18
+  I1006 10:01:15.895282 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.236.34
+  I1006 10:01:15.895290 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.895305 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.895306 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.895319 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.895353 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.895355 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.951429 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.122.67
+  I1006 10:01:15.951474 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.951484 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.165.14
+  I1006 10:01:15.951491 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.951504 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.951514 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.951547 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.951549 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:15.951886 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.247.53
+  I1006 10:01:15.951910 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:15.951924 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:15.951967 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.001450 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.36.101
+  I1006 10:01:16.001452 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.42.143
+  I1006 10:01:16.001480 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.001506 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.001566 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.001485 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.001591 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.001665 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.001448 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.29.202
+  I1006 10:01:16.001772 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-y-1151 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.001784 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.001824 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-y-1151/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.061825 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.205.27
+  I1006 10:01:16.061862 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.061876 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.061931 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.063283 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.78.18
+  I1006 10:01:16.063317 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.063333 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.063389 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.063536 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.236.34
+  I1006 10:01:16.063563 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.063577 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.063717 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.120371 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.122.67
+  I1006 10:01:16.120402 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.120413 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.120464 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.121817 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.165.14
+  I1006 10:01:16.121850 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.121867 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.121924 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.126381 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.247.53
+  I1006 10:01:16.126423 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.126439 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.126495 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.183662 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.29.202
+  I1006 10:01:16.183669 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.36.101
+  I1006 10:01:16.183688 2005528 kubemanager.go:162] Starting probe from pod a to 10.96.42.143
+  I1006 10:01:16.183698 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.183700 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.183713 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:a ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.183719 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.183817 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.183727 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.183884 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.183715 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.183967 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/a/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.243688 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.205.27
+  I1006 10:01:16.243731 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.243749 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.243808 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.244407 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.78.18
+  I1006 10:01:16.244443 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.244461 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.244512 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.244627 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.236.34
+  I1006 10:01:16.244668 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.244695 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.244732 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.302784 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.122.67
+  I1006 10:01:16.302822 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.302839 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.302900 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.303072 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.165.14
+  I1006 10:01:16.303103 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.303116 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.303160 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.303479 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.247.53
+  I1006 10:01:16.303503 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.303519 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.303564 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.366735 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.36.101
+  I1006 10:01:16.366754 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.42.143
+  I1006 10:01:16.366772 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.366781 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.366789 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.366794 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.366733 2005528 kubemanager.go:162] Starting probe from pod b to 10.96.29.202
+  I1006 10:01:16.366841 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.366843 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.366845 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:b ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.366866 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.366906 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/b/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.431022 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.205.27
+  I1006 10:01:16.431062 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.205.27:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.431075 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.431022 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.78.18
+  I1006 10:01:16.431131 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.205.27%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.431139 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.78.18:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.431154 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.431193 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.78.18%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.436434 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.236.34
+  I1006 10:01:16.436467 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.236.34:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.436481 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.436530 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.236.34%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.490836 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.122.67
+  I1006 10:01:16.490848 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.165.14
+  I1006 10:01:16.490874 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.122.67:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.490875 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.165.14:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.491165 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.491222 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.165.14%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.490890 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.491274 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.122.67%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.491079 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.247.53
+  I1006 10:01:16.491313 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.247.53:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.491329 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.491369 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.247.53%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.551109 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.29.202
+  I1006 10:01:16.551155 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.29.202:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.551173 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.551194 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.36.101
+  I1006 10:01:16.551224 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.36.101:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.551237 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.29.202%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.551241 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.551376 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.36.101%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.551825 2005528 kubemanager.go:162] Starting probe from pod c to 10.96.42.143
+  I1006 10:01:16.551861 2005528 exec_util.go:63] ExecWithOptions {Command:[/agnhost connect 10.96.42.143:80 --timeout=1s --protocol=tcp] Namespace:netpol-z-2632 PodName:c ContainerName:cont-80-tcp Stdin:<nil> CaptureStdout:true CaptureStderr:true PreserveWhitespace:false Quiet:false}
+  I1006 10:01:16.551876 2005528 exec_util.go:68] ExecWithOptions: Clientset creation
+  I1006 10:01:16.551928 2005528 exec_util.go:84] ExecWithOptions: execute(https://127.0.0.1:38001/api/v1/namespaces/netpol-z-2632/pods/c/exec?command=%2Fagnhost&command=connect&command=10.96.42.143%3A80&command=--timeout%3D1s&command=--protocol%3Dtcp&container=cont-80-tcp&stderr=true&stdout=true)
+  I1006 10:01:16.621857 2005528 test_helper.go:96] server 81->80,TCP is ready
+  STEP: creating a service netpol-x-156/deny-lb with type=LoadBalancer @ 10/06/25 10:01:16.623
+  STEP: setting ExternalTrafficPolicy=Local @ 10/06/25 10:01:16.623
+  STEP: waiting for loadbalancer for service netpol-x-156/deny-lb @ 10/06/25 10:01:16.652
+  I1006 10:01:16.652788 2005528 jig.go:610] Waiting up to 15m0s for service "deny-lb" to have a LoadBalancer
+  STEP: creating a pod to be part of the service deny-lb @ 10/06/25 10:01:18.66
+  I1006 10:01:18.667787 2005528 deployment.go:104] deployment status: v1.DeploymentStatus{ObservedGeneration:0, Replicas:0, UpdatedReplicas:0, ReadyReplicas:0, AvailableReplicas:0, UnavailableReplicas:0, TerminatingReplicas:(*int32)(nil), Conditions:[]v1.DeploymentCondition(nil), CollisionCount:(*int32)(nil)}
+  STEP: waiting for loadbalancer for service netpol-x-156/deny-lb @ 10/06/25 10:01:20.67
+  I1006 10:01:20.670346 2005528 jig.go:610] Waiting up to 15m0s for service "deny-lb" to have a LoadBalancer
+  I1006 10:03:20.672076 2005528 utils.go:1038] Poking "http://172.18.255.1:80/clientip"
+  I1006 10:03:20.673021 2005528 utils.go:1091] Poke("http://172.18.255.1:80/clientip"): success
+  [FAILED] in [It] - k8s.io/kubernetes/test/e2e/network/network_policy.go:1286 @ 10/06/25 10:03:20.673
+  I1006 10:03:20.673387 2005528 helper.go:125] Waiting up to 7m0s for all (but 0) nodes to be ready
+  STEP: dump namespace information after failure @ 10/06/25 10:03:20.68
+  STEP: Destroying namespace "netpol-x-156" for this suite. @ 10/06/25 10:03:20.68
+  STEP: Destroying namespace "netpol-y-1151" for this suite. @ 10/06/25 10:03:20.694
+  STEP: Destroying namespace "netpol-z-2632" for this suite. @ 10/06/25 10:03:20.701
+• [FAILED] [144.139 seconds]
+[sig-network] Netpol NetworkPolicy between server and client [It] should enforce default-deny ingress policy against LoadBalancer traffic with ExternalTrafficPolicy: Local [Feature:NetworkPolicy] [Feature:LoadBalancer] [sig-network, Feature:NetworkPolicy, Feature:LoadBalancer]
+k8s.io/kubernetes/test/e2e/network/network_policy.go:1238
+
+  [FAILED] LoadBalancer traffic became reachable within the poll window, but default-deny NetworkPolicy should have blocked it
+  In [It] at: k8s.io/kubernetes/test/e2e/network/network_policy.go:1286 @ 10/06/25 10:03:20.673
+------------------------------
+SSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSSS
+------------------------------
+[SynchronizedAfterSuite] 
+k8s.io/kubernetes/test/e2e/e2e.go:80
+  I1006 10:03:20.716852 2005528 suites.go:34] Running AfterSuite actions on node 1
+  I1006 10:03:20.716879 2005528 util.go:532] Dumping logs locally to: /home/jlyon/Documents/Projects/k8s/kubernetes/_artifacts
+  I1006 10:03:20.717157 2005528 util.go:543] Error running cluster/log-dump/log-dump.sh: fork/exec ../../cluster/log-dump/log-dump.sh: no such file or directory
+[SynchronizedAfterSuite] PASSED [0.000 seconds]
+------------------------------
+[ReportAfterSuite] Kubernetes e2e suite report
+k8s.io/kubernetes/test/e2e/e2e_test.go:157
+[ReportAfterSuite] PASSED [0.000 seconds]
+------------------------------
+[ReportAfterSuite] Kubernetes e2e JUnit report
+k8s.io/kubernetes/test/e2e/framework/test_context.go:616
+[ReportAfterSuite] PASSED [0.136 seconds]
+------------------------------
+
+Summarizing 1 Failure:
+  [FAIL] [sig-network] Netpol NetworkPolicy between server and client [It] should enforce default-deny ingress policy against LoadBalancer traffic with ExternalTrafficPolicy: Local [Feature:NetworkPolicy] [Feature:LoadBalancer] [sig-network, Feature:NetworkPolicy, Feature:LoadBalancer]
+  k8s.io/kubernetes/test/e2e/network/network_policy.go:1286
+
+Ran 1 of 7152 Specs in 144.336 seconds
+FAIL! -- 0 Passed | 1 Failed | 0 Pending | 7151 Skipped
+--- FAIL: TestE2E (144.65s)
+FAIL
+
+Ginkgo ran 1 suite in 2m25.243994165s
+
+Test Suite Failed
+F1006 10:03:20.868551 2005482 ginkgo.go:255] failed to run ginkgo tester: exit status 1
+Error: exit status 255
